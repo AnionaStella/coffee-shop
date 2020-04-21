@@ -14,14 +14,14 @@ sqlite.open('coffee-shop.sqlite').then(database_ => {
 })
 
 app.get('/products', (request, response) => {
-  database.all('SELECT * FROM productList').then((products) => {
+  database.all('SELECT * FROM products').then((products) => {
     response.send(products)
   })
 })
 
 app.get('/topProducts', (request, response) => {
   productArray = []
-  database.all('SELECT p.*, sum(o.quantity) as amountOrdered FROM orders o join productList p on p.id = o.productId GROUP BY productid ORDER BY amountOrdered desc').then((products) => {
+  database.all('SELECT p.*, sum(o.quantity) as amountOrdered FROM orders o join products p on p.id = o.productId GROUP BY productid ORDER BY amountOrdered desc').then((products) => {
     if (request.query.amount) {
       for (i = 0; i < request.query.amount && i < products.length; i++) {
         productArray.push(products[i])
