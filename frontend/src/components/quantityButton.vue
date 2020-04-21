@@ -1,15 +1,15 @@
 <template>
   <div>
-    <b-button type="is-danger" @click="remove"> - </b-button>
+    <b-button type="is-danger" @click="remove">-</b-button>
     <span>{{ quantity }}</span>
-    <b-button type="is-success" @click="add"> + </b-button>
+    <b-button type="is-success" @click="add">+</b-button>
   </div>
 </template>
 
 <script>
 export default {
   name: "quantityButton",
-//is-success
+  //is-success
   data() {
     return {
       quantity: this.myQuantity
@@ -17,12 +17,12 @@ export default {
   },
   methods: {
     add() {
-      this.quantity = this.quantity +1
+      this.quantity++;
       this.$emit("addOne", this.quantity);
     },
     remove() {
-      if(this.quantity > 0){
-        this.quantity = this.quantity -1
+      if (this.quantity > 0) {
+        this.quantity--;
       }
       this.$emit("removeOne", this.quantity);
     }
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-span{
+span {
   padding: 0.5em;
 }
 </style>
