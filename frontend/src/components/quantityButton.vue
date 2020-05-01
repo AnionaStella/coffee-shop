@@ -3,6 +3,7 @@
     <b-button type="is-danger" @click="remove">-</b-button>
     <span>{{ quantity }}</span>
     <b-button type="is-success" @click="add">+</b-button>
+    <b-button type="is-primary" @click="addToBasket">Add to Basket</b-button>
   </div>
 </template>
 
@@ -16,15 +17,18 @@ export default {
     };
   },
   methods: {
+    addToBasket() {
+      // this.quantity++;
+      this.$emit("addProduct", this.quantity);
+    },
     add() {
       this.quantity++;
-      this.$emit("addOne", this.quantity);
     },
     remove() {
       if (this.quantity > 0) {
         this.quantity--;
       }
-      this.$emit("removeOne", this.quantity);
+      // this.$emit("removeOne", this.quantity);
     }
   },
 
