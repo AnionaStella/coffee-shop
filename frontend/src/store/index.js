@@ -8,9 +8,22 @@ export default new Vuex.Store({
     myBasket: []
   },
   mutations: {
+    addProduct(state, targetProduct) {
+      let index = state.myBasket.findIndex(
+        product => product.id === targetProduct.id
+      );
+      if (index >= 0) {
+        if (targetProduct.productQuantity === 0) {
+          state.myBasket.splice(index, 1);
+        } else {
+          state.myBasket.splice(index, 1);
+          state.myBasket.push(targetProduct);
+        }
+      } else if (targetProduct.productQuantity !== 0) {
+        state.myBasket.push(targetProduct);
+      }
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

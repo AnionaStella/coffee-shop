@@ -78,7 +78,6 @@ export default {
         prices.push(parseFloat(item.price) * item.productQuantity);
       });
       this.totalPrice = prices.reduce(reducer);
-      console.log(this.totalPrice);
     }
   },
 
@@ -114,7 +113,7 @@ export default {
         });
         this.errorMessage = null;
         this.buttonText = true;
-        this.basket.length = 0;
+        this.basket.splice(0);
         this.successMessage = "Thank-you for shopping at Coffee World!!";
 
         setTimeout(() => {

@@ -23,7 +23,6 @@ export default {
     fetch(`http://localhost:3000/products/${this.$route.params.category}`)
       .then(response => response.json())
       .then(result => {
-        // console.log(result);
         this.products = result;
       });
   },
@@ -41,38 +40,10 @@ export default {
 
   methods: {
     addProduct(target, quantity) {
-      console.log(this.products);
-      let targetProduct = this.products.filter(
-        product => product.id === target
-      );
-      targetProduct[0].productQuantity = quantity;
-      console.log(this.products);
-      let present = this.$store.state.myBasket.find(
-        item => item.name === targetProduct[0].name
-      );
-      if (present === undefined) {
-        this.$store.state.myBasket.push(targetProduct[0]);
-      }
-      console.log(this.$store.state.myBasket);
+      let targetProduct = this.products.find(product => product.id === target);
+      targetProduct.productQuantity = quantity;
+      this.$store.commit("addProduct", targetProduct);
     }
-
-    //@removeOne="removeOne(product.id, ...arguments)"
-    // removeOne(target, quantity) {
-    //   let targetProduct = this.products.filter(
-    //     product => product.id === target
-    //   );
-    //   targetProduct[0].productQuantity = quantity;
-    //   let present = this.$store.state.myBasket.find(
-    //     item => item.name === targetProduct[0].name
-    //   );
-    //   if (present !== undefined && quantity == 0) {
-    //     this.$store.state.myBasket.splice(
-    //       this.$store.state.myBasket.indexOf(targetProduct[0]),
-    //       1
-    //     );
-    //   }
-    //   console.log(this.$store.state.myBasket);
-    // }
   },
   name: "productDisplay",
   components: {

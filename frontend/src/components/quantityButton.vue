@@ -10,7 +10,6 @@
 <script>
 export default {
   name: "quantityButton",
-  //is-success
   data() {
     return {
       quantity: this.myQuantity
@@ -18,8 +17,9 @@ export default {
   },
   methods: {
     addToBasket() {
-      // this.quantity++;
-      this.$emit("addProduct", this.quantity);
+      if (this.quantity >= 0) {
+        this.$emit("addProduct", this.quantity);
+      }
     },
     add() {
       this.quantity++;
@@ -28,7 +28,6 @@ export default {
       if (this.quantity > 0) {
         this.quantity--;
       }
-      // this.$emit("removeOne", this.quantity);
     }
   },
 
