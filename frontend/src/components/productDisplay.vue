@@ -10,7 +10,7 @@
         <p>{{product.name}}</p>
         <p>{{product.weight}} {{product.unit}}</p>
         <p>{{product.price}} kr</p>
-        <quantityButton @addProduct="addProduct(product.id, ...arguments)" :myQuantity="0" />
+        <quantityButton :myProduct="product" />
       </div>
     </section>
   </div>
@@ -36,14 +36,6 @@ export default {
       title: this.$route.params.category,
       products: null
     };
-  },
-
-  methods: {
-    addProduct(target, quantity) {
-      let targetProduct = this.products.find(product => product.id === target);
-      targetProduct.productQuantity = quantity;
-      this.$store.commit("addProduct", targetProduct);
-    }
   },
   name: "productDisplay",
   components: {

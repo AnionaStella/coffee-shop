@@ -3,7 +3,6 @@
     <b-button type="is-danger" @click="remove">-</b-button>
     <span>{{ quantity }}</span>
     <b-button type="is-success" @click="add">+</b-button>
-    <b-button type="is-primary" @click="addToBasket">Add to Basket</b-button>
   </div>
 </template>
 
@@ -12,27 +11,28 @@ export default {
   name: "quantityButton",
   data() {
     return {
-      quantity: this.myQuantity
+      quantity: 0,
+      product: this.myProduct
     };
   },
   methods: {
-    addToBasket() {
-      if (this.quantity >= 0) {
-        this.$emit("addProduct", this.quantity);
-      }
-    },
     add() {
+      console.log(this.product);
       this.quantity++;
+      this.product.productQuantity = this.quantity;
+      this.$store.commit("addProduct", this.product);
     },
     remove() {
       if (this.quantity > 0) {
         this.quantity--;
+        this.product.productQuantity = this.quantity;
+        this.$store.commit("addProduct", this.product);
       }
     }
   },
 
   props: {
-    myQuantity: Number
+    myProduct: Object
   }
 };
 </script>

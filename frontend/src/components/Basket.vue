@@ -11,6 +11,7 @@
         <p>{{product.weight}} {{product.unit}}</p>
         <p>{{product.price}} kr</p>
         <p>Amount in basket: {{product.productQuantity}}</p>
+        <quantityButton :myProduct="product" />
       </div>
     </section>
 
@@ -57,6 +58,7 @@
 </template>
 
 <script>
+import quantityButton from "@/components/quantityButton.vue";
 export default {
   data() {
     return {
@@ -122,7 +124,10 @@ export default {
       }
     }
   },
-  name: "Basket"
+  name: "Basket",
+  components: {
+    quantityButton
+  }
 };
 </script>
 
