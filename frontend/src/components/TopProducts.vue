@@ -1,8 +1,11 @@
 <template>
   <div>
-    <button class="button is-rounded" @click="topAll()">Top all products</button>
-    <input type="number" v-model="amount" />
-    <button class="button is-rounded" @click="topAmount()">Submit</button>
+    <div id="form">
+      <button class="button is-rounded" @click="topAll()">Top all products</button>
+      <label for="number">Choose amount of top products:</label>
+      <input type="number" v-model="amount" />
+      <button class="button is-rounded" @click="topAmount()">Submit</button>
+    </div>
     <div v-if="products">
       <table>
         <thead>
@@ -64,6 +67,21 @@ export default {
 </script>
 
 <style  scoped>
+form {
+  text-align: justify;
+}
+button {
+  margin: 1vw 3vw;
+  width: 10em;
+  border-style: groove;
+  border-color: #888;
+}
+input {
+  width: 5em;
+  margin: 1vw 1vw;
+  font-size: 1.2em;
+}
+
 /* Table Style */
 
 table {

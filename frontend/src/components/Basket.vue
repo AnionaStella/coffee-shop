@@ -2,7 +2,37 @@
   <div id="basket">
     <h1>My Basket</h1>
     <section id="myBasket">
-      <div v-for="product in $store.state.myBasket" :key="product.id" id="item">
+      <div id="myBasketDiv">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Amount</th>
+              <th>Remove/Add</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="product in $store.state.myBasket" :key="product.id" id="item">
+              <td>
+                <img :src="'http://localhost:3000/images/' + product.image" alt="product image" />
+              </td>
+              <td>{{product.name}}</td>
+              <td>{{product.type}}</td>
+              <td>{{product.weight}} {{product.unit}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.productQuantity}}</td>
+              <td>
+                <quantityButton :myProduct="product" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div v-for="product in $store.state.myBasket" :key="product.id" id="itemSmall">
         <p>
           <img :src="'http://localhost:3000/images/' + product.image" alt="product image" />
         </p>
@@ -132,6 +162,12 @@ export default {
 </script>
 
 <style scoped>
+th {
+  padding: 1em;
+}
+td {
+  padding: 1em;
+}
 #item {
   padding: 1em;
   margin: 1em;
@@ -139,18 +175,15 @@ export default {
   border-radius: 0.5em;
   background-color: white;
 }
-#myBasket {
+#itemSmall {
+  display: none;
+}
+#myBasketDiv {
   display: grid;
-  grid-template-columns: 20% 20% 20%;
   justify-content: center;
 }
-#myBasket div {
-  padding: 1em;
-  margin: 1em;
-  border: 1px solid black;
-}
 #myBasket img {
-  height: 110px;
+  height: 5em;
 }
 
 #item {
@@ -184,7 +217,6 @@ h1 {
 
 .customer-details {
   margin: 1em 0 1em 25vw;
-  /* margin-left: 25vw; */
   text-align: left;
 }
 
@@ -212,11 +244,24 @@ label {
   font-weight: bold;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 700px) {
   #myBasket {
     grid-template-columns: auto auto;
   }
-
+  #myBasketDiv {
+    display: none;
+  }
+  #itemSmall {
+    display: block;
+    padding: 1em;
+    margin: 1em;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 1px 3px rgba(85, 23, 14, 0.5);
+  }
+  #myBasket img {
+    height: 4em;
+  }
   h1 {
     font-size: 1em;
   }

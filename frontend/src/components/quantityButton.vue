@@ -39,6 +39,7 @@ export default {
 
 <style scoped>
 span {
+  font-size: 1.1em;
   padding: 0.5em;
 }
 </style>

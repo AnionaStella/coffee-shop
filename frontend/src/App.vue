@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!--  Creators: Vimbayinashe Mandaza and Evi Ioannou
+    <!--  Creators: Vimbayinashe Mandaza and Evi Ioannou and Ellinor Jonsson
     Course: Design med JavaScript-->
     <main>
       <div id="nav">
@@ -72,7 +72,7 @@ export default {
 }
 
 main {
-  flex-grow: 1;
+  flex-grow: 3;
 }
 
 a,
@@ -106,19 +106,20 @@ button {
   top: 2em;
 } */
 #basketdiv {
-  width: 1.5em;
+  width: 2.5em;
   height: auto;
   position: absolute;
   right: 1.5em;
   top: 6.6em;
 }
-/* #basket2 {
+#basket2 {
+  padding: auto 1em;
   width: 1.5em;
   height: auto;
   position: absolute;
-  right: 1.5em;
-  top: 6.6em;
-} */
+  /* right: 0.5em; */
+  /* top: 6.6em; */
+}
 #coffee {
   color: rgb(233, 223, 223);
   font-size: 200%;

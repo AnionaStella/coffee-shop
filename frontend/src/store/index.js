@@ -16,8 +16,7 @@ export default new Vuex.Store({
         if (targetProduct.productQuantity === 0) {
           state.myBasket.splice(index, 1);
         } else {
-          state.myBasket.splice(index, 1);
-          state.myBasket.push(targetProduct);
+          Vue.set(state.myBasket, index, targetProduct);
         }
       } else if (targetProduct.productQuantity !== 0) {
         state.myBasket.push(targetProduct);

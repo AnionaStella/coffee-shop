@@ -77,10 +77,17 @@ h3:hover {
 
 div {
   height: 95vh;
+  flex-grow: 3;
+  display: flex;
+  flex-direction: column;
+}
+#topProducts {
+  width: 75vw;
 }
 
 #stock,
-#orders {
+#orders,
+#topProducts {
   height: 75vh;
   overflow-y: scroll;
   position: absolute;
