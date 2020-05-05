@@ -1,38 +1,35 @@
 <template>
   <div v-if="orders && products">
-       <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Product</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
 
-            <tbody>
-            <tr :key="order.id" v-for="order in orders">
-              <td>
-                  {{ order.name }}
-              </td>
-              <td>{{ order.address }}</td>
-              <td>{{ products[order.productId].name }}</td>
-              <td>{{ products[order.productId].weight }} {{ products[order.productId].unit }} </td>
-              <td>{{ order.quantity }}</td>
-              <td>
-                <div v-if="order.shipped">pending</div>
-                <div v-else>sent</div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+      <tbody>
+        <tr :key="order.id" v-for="order in orders">
+          <td>{{ order.name }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ products[order.productId].name }}</td>
+          <td>{{ products[order.productId].weight }} {{ products[order.productId].unit }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>
+            <div v-if="order.shipped">pending</div>
+            <div v-else>sent</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-
 export default {
   created() {
     fetch("http://localhost:3000/orders")
@@ -41,25 +38,24 @@ export default {
         this.orders = result;
         console.log(result);
       });
-     fetch("http://localhost:3000/products")
+    fetch("http://localhost:3000/products")
       .then(response => response.json())
       .then(result => {
         this.products = result;
         console.log(result);
       });
   },
-  data () {
+  data() {
     return {
       orders: null,
       products: null
-    }
+    };
   },
   name: "Orders"
 };
 </script>
 
 <style  scoped>
-
 /* Table Style */
 
 table {
@@ -68,7 +64,8 @@ table {
   color: #000;
   margin: 3vw 10vw;
 }
-th, tr{
+th,
+tr {
   margin: 2em;
   padding: 1em;
 }
@@ -82,10 +79,11 @@ tr {
 td {
   /* margin: 1em; */
   text-align: left;
-  padding: 1em 0.5em;
+  padding: 1em;
 }
 
-th, td {
+th,
+td {
   border-bottom: 0.1em solid rgb(85, 23, 14);
 }
 
@@ -99,7 +97,7 @@ tbody::-webkit-scrollbar {
 }
 
 tbody::-webkit-scrollbar-button {
-  background:#888;
+  background: #888;
 }
 
 tbody::-webkit-scrollbar-track-piece {
@@ -109,5 +107,4 @@ tbody::-webkit-scrollbar-track-piece {
 tbody::-webkit-scrollbar-thumb {
   background: rgb(75, 74, 74);
 }
-
 </style>

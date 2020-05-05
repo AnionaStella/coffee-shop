@@ -10,8 +10,9 @@
               <th>Name</th>
               <th>Type</th>
               <th>Size</th>
-              <th>Price</th>
+              <th>Price per unit</th>
               <th>Amount</th>
+              <th>Price</th>
               <th>Remove/Add</th>
             </tr>
           </thead>
@@ -25,8 +26,9 @@
               <td>{{product.weight}} {{product.unit}}</td>
               <td>{{product.price}}</td>
               <td>{{product.productQuantity}}</td>
+              <td>{{parseFloat(product.productQuantity * product.price).toFixed(2)}}</td>
               <td>
-                <quantityButton :myProduct="product" />
+                <quantityButton :myProduct="product" :myQuantity="product.productQuantity" />
               </td>
             </tr>
           </tbody>
@@ -41,11 +43,18 @@
         <p>{{product.weight}} {{product.unit}}</p>
         <p>{{product.price}} kr</p>
         <p>Amount in basket: {{product.productQuantity}}</p>
-        <quantityButton :myProduct="product" />
+        <quantityButton
+          :myProduct="product"
+          :myQuantity="product.productQuantity"
+          id="quantityButton"
+        />
       </div>
     </section>
 
-    <div class="total" v-if="basket.length > 0">Total price: {{totalPrice}} kr</div>
+    <div
+      class="total"
+      v-if="basket.length > 0"
+    >Total price: {{parseFloat(totalPrice).toFixed(2)}} kr</div>
     <div class="total">{{ successMessage }}</div>
 
     <div v-if="!buttonText">
@@ -92,7 +101,6 @@ import quantityButton from "@/components/quantityButton.vue";
 export default {
   data() {
     return {
-      totalPrice: null,
       name: null,
       address: null,
       basket: this.$store.state.myBasket,
@@ -102,14 +110,18 @@ export default {
     };
   },
 
-  created() {
-    let prices = [];
-    let reducer = (accumulator, currentValue) => accumulator + currentValue;
-    if (this.basket.length > 0) {
-      this.basket.forEach(item => {
-        prices.push(parseFloat(item.price) * item.productQuantity);
-      });
-      this.totalPrice = prices.reduce(reducer);
+  computed: {
+    totalPrice: function() {
+      let totalPrice;
+      let prices = [];
+      let reducer = (accumulator, currentValue) => accumulator + currentValue;
+      if (this.basket.length > 0) {
+        this.basket.forEach(item => {
+          prices.push(item.price * item.productQuantity);
+        });
+        totalPrice = prices.reduce(reducer);
+      }
+      return totalPrice;
     }
   },
 
@@ -166,6 +178,9 @@ th {
   padding: 1em;
 }
 td {
+  padding: 1em;
+}
+button {
   padding: 1em;
 }
 #item {

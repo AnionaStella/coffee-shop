@@ -8,8 +8,12 @@
       </div>
       <router-link to="/basket">
         <div id="basketdiv">
-          {{ basketAmount }}
-          <img id="basket2" src="./assets/images/basket.png" alt />
+          {{ basketAmount === 0 ? '' : basketAmount }}
+          <img
+            id="basket2"
+            src="./assets/images/basket.png"
+            alt
+          />
         </div>
       </router-link>
       <router-view />

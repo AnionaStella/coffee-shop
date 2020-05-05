@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div id="stock-nav">
       <h3 :class="{dark:viewAll}" @click="viewAll=!viewAll">
         <!--if class "h3-dark" works then :class="{ dark: viewAll }" -->
@@ -12,7 +11,6 @@
     </div>
 
     <div id="stock-item" v-show="viewAll">
-        
       <div>
         <div 
           class="category-name"
@@ -29,10 +27,8 @@
       </div>
 
       <div>
-        <div class="category-name" @click ='toggle(coffeeOn); coffeeOn= true'>
-          Coffee Brew and Beans
-        </div>
-        <div class="indiv-products" v-if="allCoffee" v-show='coffeeOn'>
+        <div class="category-name" @click="toggle(coffeeOn); coffeeOn= true">Coffee Brew and Beans</div>
+        <div class="indiv-products" v-if="allCoffee" v-show="coffeeOn">
           <CategoryDisplay :products="allCoffee"></CategoryDisplay>
           <div class="close" @click="coffeeOn = false">close</div>
         </div>
@@ -60,26 +56,22 @@
 
       <div @click ='toggle(syrupOn) ; setProduct("syrup"); syrupOn = true'>
         <!-- find solution to compute syrupOn = true in 'toggle()' -->
-        <div class="category-name">
-          Syrups
-        </div>
-        <div class="indiv-products" v-show='syrupOn'>
+        <div class="category-name">Syrups</div>
+        <div class="indiv-products" v-show="syrupOn">
           <CategoryDisplay :products="viewProducts"></CategoryDisplay>
           <div class="close" @click="syrupOn = false">close</div>
         </div>
       </div>
-
     </div>
 
     <div id="stock-all" v-show="!viewAll">
       <CategoryDisplay :products="products"></CategoryDisplay>
     </div>
-
   </div>
 </template>
 
 <script>
-import CategoryDisplay from '@/components/CategoryDisplay.vue'
+import CategoryDisplay from "@/components/CategoryDisplay.vue";
 
 export default {
   components: {
@@ -87,7 +79,7 @@ export default {
   },
   computed: {
     setClass(viewAll) {
-      return this.viewAll? h3-dark : nothing
+      return this.viewAll ? h3 - dark : nothing;
     }
   },
   created() {
@@ -96,7 +88,7 @@ export default {
       .then(result => {
         this.products = result;
         console.log(result);
-        this.setCoffee()
+        this.setCoffee();
       });
   },
   data() {
@@ -109,44 +101,45 @@ export default {
       sugarOn: false,
       syrupOn: false,
       viewAll: true,
-      allCoffee:null,
+      allCoffee: null,
       viewProducts: null,
       alcoholic: null
     };
   },
   methods: {
-    setCoffee () {
+    setCoffee() {
       this.allCoffee = this.products.filter(
-        product => product.type ==='coffee' || product.type === 'espresso' || product.type === 'instant coffee'
-      )
+        product =>
+          product.type === "coffee" ||
+          product.type === "espresso" ||
+          product.type === "instant coffee"
+      );
     },
-    setProduct (type) {
+    setProduct(type) {
       // type = this.products.filter(
       //   product => product.type ===type
       // )
       this.viewProducts = this.products.filter(
-        product => product.type ===type
-      )
+        product => product.type === type
+      );
     },
     toggle(type) {
-      
       let statuses = [
-        this.alcoholOn = false,
-        this.coffeeOn = false,
-        this.milkOn = false,
-        this.syrupOn = false,
-        this.sugarOn = false
-      ]
-      
+        (this.alcoholOn = false),
+        (this.coffeeOn = false),
+        (this.milkOn = false),
+        (this.syrupOn = false),
+        (this.sugarOn = false)
+      ];
+
       // statuses.forEach( status => {
       //     if (status = type) status = true
       //   else status = false
       // })
 
       statuses.find(status => {
-        if (status = type) status = true
-      })
- 
+        if ((status = type)) status = true;
+      });
     }
   },
   name: "Stock"
@@ -154,8 +147,7 @@ export default {
 </script>
 
 <style scoped>
-
-*{
+* {
   color: #000;
 }
 
@@ -163,7 +155,7 @@ export default {
   /* border: 2px solid rgb(85, 23, 14);
   border-radius: 15px; */
   color: #000;
-  cursor:pointer;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -172,7 +164,7 @@ export default {
   width: 40em;
 }
 
-h3:hover{
+h3:hover {
   text-decoration-line: underline;
 }
 
@@ -196,19 +188,17 @@ h3 {
   text-align: center;
 }
 
-#stock-item{
+#stock-item {
   text-align: left;
 }
 
-.category-name{
+.category-name {
   font-size: 120%;
   font-weight: bold;
   margin: 0.5em 12vw;
-
 }
 
-.indiv-products{
+.indiv-products {
   margin-left: 0em;
 }
-
 </style>

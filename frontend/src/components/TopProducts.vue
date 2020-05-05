@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="form">
-      <button class="button is-rounded" @click="topAll()">Top all products</button>
+      <button class="button is-rounded" @click="topAll()">Show top products</button>
       <label for="number">Choose amount of top products:</label>
       <input type="number" v-model="amount" />
       <button class="button is-rounded" @click="topAmount()">Submit</button>
@@ -71,13 +71,13 @@ form {
   text-align: justify;
 }
 button {
+  background-color: sandybrown;
   margin: 1vw 3vw;
-  width: 10em;
-  border-style: groove;
-  border-color: #888;
+  width: 12em;
+  font-weight: bold;
 }
 input {
-  width: 5em;
+  width: 4em;
   margin: 1vw 1vw;
   font-size: 1.2em;
 }
@@ -90,9 +90,8 @@ table {
   color: #000;
   margin: 3vw 10vw;
 }
-th,
-tr {
-  margin: 2em;
+th {
+  margin: 1em;
   padding: 1em;
 }
 
@@ -103,9 +102,8 @@ tr {
 }
 
 td {
-  /* margin: 1em; */
   text-align: left;
-  padding: 1em 0.5em;
+  padding: 1em;
 }
 
 th,

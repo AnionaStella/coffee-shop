@@ -11,7 +11,7 @@ export default {
   name: "quantityButton",
   data() {
     return {
-      quantity: 0,
+      quantity: this.myQuantity,
       product: this.myProduct
     };
   },
@@ -32,12 +32,16 @@ export default {
   },
 
   props: {
-    myProduct: Object
+    myProduct: Object,
+    myQuantity: Number
   }
 };
 </script>
 
 <style scoped>
+b-button {
+  padding: 1em;
+}
 span {
   font-size: 1.1em;
   padding: 0.5em;

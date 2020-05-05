@@ -3,7 +3,7 @@
     <h2>Control Panel</h2>
     <h3 @click="toggle('Stock')">Stock Levels</h3>
     <h3 @click="toggle('Orders')">Orders</h3>
-    <h3 @click="toggle('TopProducts')">TopProducts</h3>
+    <h3 @click="toggle('TopProducts')">Top Products</h3>
     <Stock id="stock" v-if="toggleStock"></Stock>
     <Orders id="orders" v-if="toggleOrders"></Orders>
     <TopProducts id="topProducts" v-if="toggleTopProducts"></TopProducts>

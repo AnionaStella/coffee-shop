@@ -10,7 +10,7 @@
         <p>{{product.name}}</p>
         <p>{{product.weight}} {{product.unit}}</p>
         <p>{{product.price}} kr</p>
-        <quantityButton :myProduct="product" />
+        <quantityButton :myProduct="product" :myQuantity="0" />
       </div>
     </section>
   </div>

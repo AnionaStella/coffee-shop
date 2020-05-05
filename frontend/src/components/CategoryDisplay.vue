@@ -1,42 +1,37 @@
 <template>
   <div>
     <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>Price</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Brand</th>
+          <th>Type</th>
+          <th>Size</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
 
-            <tbody>
-            <tr :key="product.id" v-for="product in products">
-              <td> {{ products.indexOf(product) + 1 }}. </td>
-              <td>
-                  <router-link 
-                    :to="'/control-panel/products/'+product.id"
-                  >
-                    {{ product.name }}
-                  </router-link>
-              </td>
-              <td>{{ product.brand }}</td>
-              <td>{{ product.type }}</td>
-              <td>{{ product.weight }} {{ product.unit }} </td>
-              <td>{{ product.price }}</td>
-              <td>{{ product.quantity }}</td>
-            </tr>
-            </tbody>
-          </table>
+      <tbody>
+        <tr :key="product.id" v-for="product in products">
+          <td>{{ products.indexOf(product) + 1 }}.</td>
+          <td>
+            <router-link :to="'/control-panel/products/'+product.id">{{ product.name }}</router-link>
+          </td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.type }}</td>
+          <td>{{ product.weight }} {{ product.unit }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 
 <script>
-
 export default {
   name: "CategoryDisplay",
   props: {
@@ -44,11 +39,10 @@ export default {
       type: Array
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 /* Table Style */
 
 table {
@@ -57,7 +51,8 @@ table {
   color: #000;
   margin: 3vw 10vw;
 }
-th, tr{
+th,
+tr {
   margin: 2em;
   padding: 1em;
 }
@@ -71,10 +66,11 @@ tr {
 td {
   /* margin: 1em; */
   text-align: left;
-  padding: 1em 0.5em;
+  padding: 1em;
 }
 
-th, td {
+th,
+td {
   border-bottom: 0.1em solid rgb(85, 23, 14);
 }
 
@@ -88,7 +84,7 @@ tbody::-webkit-scrollbar {
 }
 
 tbody::-webkit-scrollbar-button {
-  background:#888;
+  background: #888;
 }
 
 tbody::-webkit-scrollbar-track-piece {
@@ -98,5 +94,4 @@ tbody::-webkit-scrollbar-track-piece {
 tbody::-webkit-scrollbar-thumb {
   background: rgb(75, 74, 74);
 }
-
 </style>
